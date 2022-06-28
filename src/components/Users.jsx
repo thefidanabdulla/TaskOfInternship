@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { fetchUsers } from "../features/userSlice";
+import Pagination from "./Pagination";
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -8,8 +9,19 @@ const Users = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
   const users = useSelector((state) => state.users.users);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
   return (
     <div className="app__users container">
+      <h1 className="text-xxl">Users</h1>
       <table className="table">
         <thead>
           <tr>
@@ -20,7 +32,7 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {currentItems.map((user) => (
             <tr key={user.id}>
               <th scope="row">{user.id}</th>
               <td>{user.name}</td>
@@ -30,6 +42,7 @@ const Users = () => {
           ))}
         </tbody>
       </table>
+      <Pagination itemsPerPage={itemsPerPage} totalItems={users.length} paginate={paginate} />
     </div>
   );
 };

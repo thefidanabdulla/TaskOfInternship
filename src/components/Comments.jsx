@@ -1,15 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { fetchComments } from "../features/commentSlice";
+import Pagination from "./Pagination";
 
 const Comments = () => {
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchComments());
   }, [dispatch]);
   const comments = useSelector(state => state.comments.comments);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(20);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = comments.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
   return (
     <div className="app__users container">
+      <h1 className="text-xxl">Comments</h1>
       <table className="table">
         <thead>
           <tr>
@@ -21,7 +35,7 @@ const Comments = () => {
           </tr>
         </thead>
         <tbody>
-          {comments.map((comment) => (
+          {currentItems.map((comment) => (
             <tr key={comment.id}>
               <th scope="row">{comment.id}</th>
               <td>{comment.postId}</td>
@@ -32,6 +46,7 @@ const Comments = () => {
           ))}
         </tbody>
       </table>
+      <Pagination itemsPerPage={itemsPerPage} totalItems={comments.length} paginate={paginate} />
     </div>
   );
 };
