@@ -12,7 +12,7 @@ const Comments = () => {
   const comments = useSelector(state => state.comments.comments);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(20);
+  const [itemsPerPage] = useState(8);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = comments.slice(indexOfFirstItem, indexOfLastItem);
@@ -22,7 +22,7 @@ const Comments = () => {
   }
 
   return (
-    <div className="app__users container">
+    <div className="app__users app__container">
       <h1 className="text-xxl">Comments</h1>
       <table className="table">
         <thead>

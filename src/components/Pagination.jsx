@@ -20,9 +20,23 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
     );
     paginate(currentButton + 1);
   };
+
+  const shortPaginationNum = () => {
+    let paginateNum = [];
+    let maxNum =
+      currentButton >= Math.ceil(totalItems / itemsPerPage) - 3
+      ? Math.ceil(totalItems / itemsPerPage)
+      : currentButton + 3
+    let minNum = currentButton > 3 ? currentButton - 3 : 1;
+
+    for (let i = minNum; i <= maxNum; i++) {
+      paginateNum.push(i);
+    }
+    return paginateNum;
+  };
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="pagination pagination-sm">
         <li
           className={`${
             currentButton === 1 ? "page-item disabled" : "page-item"
@@ -37,21 +51,54 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
             <span>&laquo;</span>
           </Link>
         </li>
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            className={`${
-              currentButton === number ? "page-item active" : "page-item"
-            }`}
-          >
-            <Link onClick={() => goPage(number)} to="#" className="page-link">
-              {number}
-            </Link>
-          </li>
-        ))}
+        {pageNumbers.length <= 10 ? (
+          pageNumbers.map((number) => (
+            <li
+              key={number}
+              className={`${
+                currentButton === number ? "page-item active" : "page-item"
+              }`}
+            >
+              <Link onClick={() => goPage(number)} to="#" className="page-link">
+                {number}
+              </Link>
+            </li>
+          ))
+        ) : (
+          <>
+            <li className={`${currentButton === 1 ? "d-none" : ""}`}>
+              <span className="pagination-ellipsis">&hellip;</span>
+            </li>
+            {shortPaginationNum().map((number) => (
+              <li
+                key={number}
+                className={`${
+                  currentButton === number ? "page-item active" : "page-item"
+                }`}
+              >
+                <Link
+                  onClick={() => goPage(number)}
+                  to="#"
+                  className="page-link"
+                >
+                  {number}
+                </Link>
+              </li>
+            ))}
+            <li
+              className={`${
+                currentButton === Math.ceil(totalItems / itemsPerPage)
+                  ? "d-none"
+                  : ""
+              }`}
+            >
+              <span className="pagination-ellipsis">&hellip;</span>
+            </li>
+          </>
+        )}
         <li
           className={`${
-            currentButton === Math.ceil( totalItems / itemsPerPage)
+            currentButton === Math.ceil(totalItems / itemsPerPage)
               ? "page-item disabled"
               : "page-item"
           }`}

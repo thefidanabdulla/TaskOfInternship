@@ -20,7 +20,7 @@ const Users = () => {
   }
 
   return (
-    <div className="app__users container">
+    <div className="app__users app__container">
       <h1 className="text-xxl">Users</h1>
       <table className="table">
         <thead>
