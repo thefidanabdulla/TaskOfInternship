@@ -8,9 +8,49 @@
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
+a{
+  text-decoration: none!important;
+}
 .app__container{
   padding: 1rem;
   width: 100%;
   min-height: 100vh;
 }
-
+.app__popup-container{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+.app__popup-overlay{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+}
+.app__popup{
+ position: absolute;
+ overflow: scroll;
+ top: 50%;
+ right: 50%;
+ height: 90%;
+ width: 1000px;
+ padding: 1rem;
+ background: #fff;
+ border: 1px solid #000;
+ -webkit-transform: translate(50%,-50%);
+ -moz-transform: translate(50%,-50%);
+ -ms-transform: translate(50%,-50%);
+ -o-transform: translate(50%,-50%);
+ transform: translate(50%,-50%);
+ -webkit-border-radius: 5px ;
+ -moz-border-radius: 5px ;
+ -ms-border-radius: 5px ;
+ -o-border-radius: 5px ;
+ border-radius: 5px ;
+}
+.app__popup-btn{
+  background: transparent;
+  border: none;
+  outline: none;
+}

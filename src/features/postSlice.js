@@ -14,7 +14,9 @@ const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-
+        getByUserId : () =>{
+            
+        }
     },
     extraReducers: {
         [fetchPosts.pending]: (state) => {

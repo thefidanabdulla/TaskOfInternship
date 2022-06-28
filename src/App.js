@@ -10,8 +10,8 @@ function App() {
     <div className="app__app">
       <Navigation />
       <Routes>
-        <Route path='/users' element={<Users />}/>
         <Route path='/' element={<Posts />}/>
+        <Route path='/users' element={<Users />}/>
         <Route path='/comments' element={<Comments />}/>
       </Routes>
     </div>
