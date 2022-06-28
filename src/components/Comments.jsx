@@ -10,7 +10,7 @@ const Comments = () => {
     dispatch(fetchComments());
   }, [dispatch]);
   const comments = useSelector(state => state.comments.comments);
-
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -22,26 +22,26 @@ const Comments = () => {
   }
 
   return (
-    <div className="app__users app__container">
-      <h1 className="text-xxl">Comments</h1>
+    <div  className={`app__users app__container ${darkMode ? "bg-dark" : ""} `}>
+      <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>Comments</h1>
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">postId</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Body</th>
+            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">#</th>
+            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">postId</th>
+            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">Name</th>
+            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">Email</th>
+            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">Body</th>
           </tr>
         </thead>
         <tbody>
           {currentItems.map((comment) => (
             <tr key={comment.id}>
-              <th scope="row">{comment.id}</th>
-              <td>{comment.postId}</td>
-              <td>{comment.name}</td>
-              <td>{comment.email}</td>
-              <td>{comment.body}</td>
+              <th  className={` ${darkMode ? "text-white" : ""} `} scope="row">{comment.id}</th>
+              <td className={` ${darkMode ? "text-white" : ""} `} >{comment.postId}</td>
+              <td className={` ${darkMode ? "text-white" : ""} `} >{comment.name}</td>
+              <td className={` ${darkMode ? "text-white" : ""} `} >{comment.email}</td>
+              <td className={` ${darkMode ? "text-white" : ""} `} >{comment.body}</td>
             </tr>
           ))}
         </tbody>

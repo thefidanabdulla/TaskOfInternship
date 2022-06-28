@@ -49,6 +49,10 @@ a{
  -o-border-radius: 5px ;
  border-radius: 5px ;
 }
+.app__popup.dark{
+  background: #212529;
+  color: #fff;
+}
 .app__popup-btn{
   background: transparent;
   border: none;

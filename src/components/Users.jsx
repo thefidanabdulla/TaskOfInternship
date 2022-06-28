@@ -8,6 +8,7 @@ const Users = () => {
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
+  const darkMode = useSelector(state => state.darkMode.darkMode)
   const users = useSelector((state) => state.users.users);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -20,24 +21,24 @@ const Users = () => {
   }
 
   return (
-    <div className="app__users app__container">
-      <h1 className="text-xxl">Users</h1>
+    <div className={`app__users app__container ${darkMode ? "bg-dark" : ""} `}>
+      <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>Users</h1>
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">FullName</th>
-            <th scope="col">UserName</th>
-            <th scope="col">Email</th>
+            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">#</th>
+            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">FullName</th>
+            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">UserName</th>
+            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">Email</th>
           </tr>
         </thead>
         <tbody>
           {currentItems.map((user) => (
             <tr key={user.id}>
-              <th scope="row">{user.id}</th>
-              <td>{user.name}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
+              <th className={` ${darkMode ? "text-white" : ""} `}  scope="row">{user.id}</th>
+              <td className={` ${darkMode ? "text-white" : ""} `} >{user.name}</td>
+              <td className={` ${darkMode ? "text-white" : ""} `} >{user.username}</td>
+              <td className={` ${darkMode ? "text-white" : ""} `} >{user.email}</td>
             </tr>
           ))}
         </tbody>

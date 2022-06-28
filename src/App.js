@@ -7,7 +7,7 @@ import './../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
-    <div className="app__app">
+    <div className={``}>
       <Navigation />
       <Routes>
         <Route path='/' element={<Posts />}/>

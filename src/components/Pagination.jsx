@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+
 const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
+  const darkMode = useSelector(state => state.darkMode.darkMode);
   const pageNumbers = [];
   const [currentButton, setCurrentButton] = useState(1);
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
@@ -34,12 +37,15 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
     }
     return paginateNum;
   };
+
+
+  
   return (
     <nav>
       <ul className="pagination pagination-sm">
         <li
           className={`${
-            currentButton === 1 ? "page-item disabled" : "page-item"
+            currentButton === 1  ?  "page-item disabled" : "page-item"
           }`}
         >
           <Link
@@ -67,7 +73,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
         ) : (
           <>
             <li className={`${currentButton === 1 ? "d-none" : ""}`}>
-              <span className="pagination-ellipsis">&hellip;</span>
+              <span className={`pagination-ellipsis p-1 ${darkMode ? 'text-white': ''}`}>&hellip;</span>
             </li>
             {shortPaginationNum().map((number) => (
               <li
@@ -92,7 +98,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
                   : ""
               }`}
             >
-              <span className="pagination-ellipsis">&hellip;</span>
+              <span className={`pagination-ellipsis p-1 ${darkMode ? 'text-white': ''}`}>&hellip;</span>
             </li>
           </>
         )}

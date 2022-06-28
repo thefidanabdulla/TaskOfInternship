@@ -4,13 +4,13 @@ import { fetchPosts } from "../features/postSlice";
 import Pagination from "./Pagination";
 import { GrClose } from "react-icons/gr";
 import { fetchComments } from "../features/commentSlice";
-
 const Posts = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPosts());
-    dispatch(fetchComments())
+    dispatch(fetchComments());
   }, [dispatch]);
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
   const posts = useSelector((state) => state.posts.posts);
   const comments = useSelector((state) => state.comments.comments);
   const [togglePopupUser, settogglePopupUser] = useState(false);
@@ -34,14 +34,17 @@ const Posts = () => {
   const openPopupByPostId = (postIdForPopup) => {
     settogglePopupComment(true);
     setPostId(postIdForPopup);
-  }
+  };
   const PopupUserId = ({ userId, posts }) => {
     return (
       <div className="app__popup-container">
-        <div className="app__popup-overlay" onClick={() => settogglePopupUser(false)}></div>
-        <div className="app__popup">
+        <div
+          className="app__popup-overlay"
+          onClick={() => settogglePopupUser(false)}
+        ></div>
+        <div  className={` app__popup ${darkMode ? 'dark' : ''}`}>
           <div className="app__popup-header d-flex justify-content-between">
-            <p>Popup</p>
+            <p className={`${darkMode ? 'text-white' : ''}`}>Popup</p>
             <button
               className="app__popup-btn"
               onClick={() => settogglePopupUser(false)}
@@ -53,20 +56,20 @@ const Posts = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">UserId</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Body</th>
+                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">#</th>
+                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">UserId</th>
+                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">Title</th>
+                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">Body</th>
                 </tr>
               </thead>
               <tbody>
                 {posts.map((post) =>
                   post.userId === userId ? (
                     <tr key={post.id}>
-                      <th scope="row">{post.id}</th>
-                      <td>{post.userId}</td>
-                      <td>{post.title}</td>
-                      <td>{post.body}</td>
+                      <th className={` ${darkMode ? 'text-white' : ''}`} scope="row">{post.id}</th>
+                      <td className={` ${darkMode ? 'text-white' : ''}`}>{post.userId}</td>
+                      <td className={` ${darkMode ? 'text-white' : ''}`}>{post.title}</td>
+                      <td className={` ${darkMode ? 'text-white' : ''}`}>{post.body}</td>
                     </tr>
                   ) : null
                 )}
@@ -81,10 +84,13 @@ const Posts = () => {
   const PopupPostId = ({ postId }) => {
     return (
       <div className="app__popup-container">
-        <div className="app__popup-overlay" onClick={() => settogglePopupComment(false)}></div>
-        <div className="app__popup">
+        <div
+          className="app__popup-overlay"
+          onClick={() => settogglePopupComment(false)}
+        ></div>
+        <div className={` app__popup ${darkMode ? 'dark' : ''}`}>
           <div className="app__popup-header d-flex justify-content-between">
-            <p>Popup</p>
+            <p className={`${darkMode ? 'text-white' : ''}`}>Popup</p>
             <button
               className="app__popup-btn"
               onClick={() => settogglePopupComment(false)}
@@ -96,24 +102,25 @@ const Posts = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">postId</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Body</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">#</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">postId</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">Name</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">Email</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">Body</th>
                 </tr>
               </thead>
               <tbody>
-                {comments.map((comment) => 
-                  comment.postId === postId ?(
-                  <tr key={comment.id}>
-                    <th scope="row">{comment.id}</th>
-                    <td>{comment.postId}</td>
-                    <td>{comment.name}</td>
-                    <td>{comment.email}</td>
-                    <td>{comment.body}</td>
-                  </tr>
-                ) : null)}
+                {comments.map((comment) =>
+                  comment.postId === postId ? (
+                    <tr key={comment.id}>
+                      <th className={` ${darkMode ? 'text-white' : ''}`} scope="row">{comment.id}</th>
+                      <td className={` ${darkMode ? 'text-white' : ''}`}>{comment.postId}</td>
+                      <td className={` ${darkMode ? 'text-white' : ''}`}>{comment.name}</td>
+                      <td className={` ${darkMode ? 'text-white' : ''}`}>{comment.email}</td>
+                      <td className={` ${darkMode ? 'text-white' : ''}`}>{comment.body}</td>
+                    </tr>
+                  ) : null
+                )}
               </tbody>
             </table>
           </div>
@@ -126,38 +133,48 @@ const Posts = () => {
     <div>
       {togglePopupUser ? <PopupUserId userId={userId} posts={posts} /> : null}
       {togglePopupComment ? <PopupPostId postId={postId} /> : null}
-      <div className="app__users app__container">
-        <h1 className="text-xxl">Posts</h1>
+      <div
+        className={`app__users app__container ${darkMode ? "bg-dark" : ""} `}
+      >
+        <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>Posts</h1>
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">UserId</th>
-              <th scope="col">Title</th>
-              <th scope="col">Body</th>
+              <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
+                #
+              </th>
+              <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
+                UserId
+              </th>
+              <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
+                Title
+              </th>
+              <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
+                Body
+              </th>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((post) => (
               <tr key={post.id}>
-                <th scope="row">
-                <button
+                <th className={` ${darkMode ? 'text-white' : ''} `} scope="row">
+                  <button
                     onClick={() => openPopupByPostId(post.id)}
-                    className="app__popup-btn"
+                    className={` app__popup-btn ${darkMode ? 'text-white' : ''} `}
                   >
                     {post.id}
                   </button>
                 </th>
-                <td>
+                <td >
                   <button
                     onClick={() => openPopupByUserId(post.userId)}
-                    className="app__popup-btn"
+                    className={` app__popup-btn ${darkMode ? 'text-white' : ''} `}
                   >
                     {post.userId}
                   </button>
                 </td>
-                <td>{post.title}</td>
-                <td>{post.body}</td>
+                <td className={` ${darkMode ? 'text-white' : ''} `}>{post.title}</td>
+                <td className={` ${darkMode ? 'text-white' : ''} `}>{post.body}</td>
               </tr>
             ))}
           </tbody>
