@@ -5,13 +5,13 @@ import {BsFillMoonFill} from 'react-icons/bs';
 const Navigation = () => {
   return (
     <header>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <Link to={'/'} class="navbar-brand">
+      <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+          <Link to={'/'} className="navbar-brand">
             Task of Internship
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarText"
@@ -19,27 +19,27 @@ const Navigation = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Link to={'/'} class="nav-link active" aria-current="page">
-                  Users
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link to={'/posts'} class="nav-link">
+          <div className="collapse navbar-collapse" id="navbarText">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item btn">
+              <Link to={'/'} className="nav-link  active"  aria-current="page">
                   Posts
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link to={'/comments'} class="nav-link">
+              <li className="nav-item btn">
+                <Link to={'/users'} className="nav-link">
+                  Users
+                </Link>
+              </li>
+              <li className="nav-item btn">
+                <Link to={'/comments'} className="nav-link">
                   Comments
                 </Link>
               </li>
             </ul>
-            <button class="btn btn-secondary">
+            <button className="btn btn-secondary">
                 <BsFillMoonFill />
             </button>
           </div>
