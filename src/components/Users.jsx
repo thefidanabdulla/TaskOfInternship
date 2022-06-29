@@ -10,6 +10,7 @@ const Users = () => {
   }, [dispatch]);
   const darkMode = useSelector(state => state.darkMode.darkMode)
   const users = useSelector((state) => state.users.users);
+  const lang = useSelector ((state) => state.lang.lang)
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -22,13 +23,13 @@ const Users = () => {
 
   return (
     <div className={`app__users app__container ${darkMode ? "bg-dark" : ""} `}>
-      <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>Users</h1>
+      <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}> {lang === 'az' ? 'İstifadəçilər' : 'Users'}</h1>
       <table className="table">
         <thead>
           <tr>
             <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">#</th>
-            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">FullName</th>
-            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">UserName</th>
+            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col"> {lang === 'az' ? 'Ad' : 'FullName'}</th>
+            <th className={` ${darkMode ? "text-white" : ""} `}  scope="col"> {lang === 'az' ? 'İstifadəçi adı' : 'UserName'}</th>
             <th className={` ${darkMode ? "text-white" : ""} `}  scope="col">Email</th>
           </tr>
         </thead>

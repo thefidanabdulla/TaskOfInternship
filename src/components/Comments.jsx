@@ -4,7 +4,7 @@ import { fetchComments } from "../features/commentSlice";
 import Pagination from "./Pagination";
 
 const Comments = () => {
-
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchComments());
@@ -16,22 +16,24 @@ const Comments = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = comments.slice(indexOfFirstItem, indexOfLastItem);
-
+  const lang = useSelector(state => state.lang.lang)
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
 
   return (
     <div  className={`app__users app__container ${darkMode ? "bg-dark" : ""} `}>
-      <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>Comments</h1>
+      <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>
+      {lang === 'az' ? 'Rəylər' : 'Comments'}
+      </h1>
       <table className="table">
         <thead>
           <tr>
             <th className={` ${darkMode ? "text-white" : ""} `} scope="col">#</th>
             <th className={` ${darkMode ? "text-white" : ""} `} scope="col">postId</th>
-            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">Name</th>
+            <th className={` ${darkMode ? "text-white" : ""} `} scope="col"> {lang === 'az' ? 'Ad' : 'Name'}</th>
             <th className={` ${darkMode ? "text-white" : ""} `} scope="col">Email</th>
-            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">Body</th>
+            <th className={` ${darkMode ? "text-white" : ""} `} scope="col">{lang === 'az' ? 'Kontent' : 'Body'}</th>
           </tr>
         </thead>
         <tbody>

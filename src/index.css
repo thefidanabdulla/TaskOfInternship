@@ -58,3 +58,8 @@ a{
   border: none;
   outline: none;
 }
+.line{
+  height: 40px;
+  width: 1px;
+  background: #000;
+}

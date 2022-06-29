@@ -12,6 +12,7 @@ const Posts = () => {
   }, [dispatch]);
   const darkMode = useSelector((state) => state.darkMode.darkMode);
   const posts = useSelector((state) => state.posts.posts);
+  const lang = useSelector((state) => state.lang.lang);
   const comments = useSelector((state) => state.comments.comments);
   const [togglePopupUser, settogglePopupUser] = useState(false);
   const [togglePopupComment, settogglePopupComment] = useState(false);
@@ -58,8 +59,8 @@ const Posts = () => {
                 <tr>
                   <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">#</th>
                   <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">UserId</th>
-                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">Title</th>
-                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">Body</th>
+                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col"> {lang === 'az' ? 'Başlıq' : 'Title'}</th>
+                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">{lang === 'az' ? 'Kontent' : 'Body'}</th>
                 </tr>
               </thead>
               <tbody>
@@ -104,9 +105,9 @@ const Posts = () => {
                 <tr>
                   <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">#</th>
                   <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">postId</th>
-                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">Name</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">{lang === 'az' ? 'Ad' : 'Name'}</th>
                   <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">Email</th>
-                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">Body</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col"> {lang === 'az' ? 'Kontent' : 'Body'}</th>
                 </tr>
               </thead>
               <tbody>
@@ -136,7 +137,7 @@ const Posts = () => {
       <div
         className={`app__users app__container ${darkMode ? "bg-dark" : ""} `}
       >
-        <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>Posts</h1>
+        <h1 className={`text-xxl ${darkMode ? "text-white" : ""} `}>{lang === 'az' ? 'Postlar' : 'Posts'}</h1>
         <table className="table">
           <thead>
             <tr>
@@ -147,10 +148,10 @@ const Posts = () => {
                 UserId
               </th>
               <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
-                Title
+                {lang === 'az' ? 'Başlıq' : 'Title'}
               </th>
               <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
-                Body
+                {lang === 'az' ? 'Kontent' : 'Body'}
               </th>
             </tr>
           </thead>
