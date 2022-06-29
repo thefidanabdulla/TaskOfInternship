@@ -8,7 +8,6 @@ import { changeLang } from "../features/langSlice";
 const Navigation = () => {
   const darkMode = useSelector((state) => state.darkMode.darkMode);
   const lang = useSelector((state) => state.lang.lang);
-  console.log(lang);
   const dispatch = useDispatch();
   return (
     <header>
@@ -22,29 +21,28 @@ const Navigation = () => {
             to={"/"}
             className={`navbar-brand ${darkMode ? "text-white" : ""}`}
           >
-            {lang === 'az' ? 'Staj üçün tapşırıq' : 'Task of Internship'}
-            
+            {lang === "az" ? "Staj üçün tapşırıq" : "Task of Internship"}
           </Link>
           <button
-            className="navbar-toggler"
+            class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarText"
-            aria-controls="navbarText"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item btn">
                 <Link
                   to={"/"}
                   className={`nav-link  active ${darkMode ? "text-white" : ""}`}
                   aria-current="page"
                 >
-                  {lang === 'az' ? 'Postlar' : 'Posts'}
+                  {lang === "az" ? "Postlar" : "Posts"}
                 </Link>
               </li>
               <li className="nav-item btn">
@@ -52,7 +50,7 @@ const Navigation = () => {
                   to={"/users"}
                   className={`nav-link  ${darkMode ? "text-white" : ""}`}
                 >
-                  {lang === 'az' ? 'İstifadəçilər' : 'Users'}
+                  {lang === "az" ? "İstifadəçilər" : "Users"}
                 </Link>
               </li>
               <li className="nav-item btn">
@@ -60,7 +58,7 @@ const Navigation = () => {
                   to={"/comments"}
                   className={`nav-link  ${darkMode ? "text-white" : ""}`}
                 >
-                 {lang === 'az' ? 'Rəylər' : 'Comments'}
+                  {lang === "az" ? "Rəylər" : "Comments"}
                 </Link>
               </li>
             </ul>
