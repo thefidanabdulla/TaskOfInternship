@@ -4,6 +4,8 @@ import Navigation from './components/Navigation';
 import Posts from './components/Posts';
 import Users from './components/Users';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './../node_modules/bootstrap/dist/js/bootstrap.min.js'
 
 function App() {
   return (

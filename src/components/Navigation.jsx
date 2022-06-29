@@ -62,7 +62,7 @@ const Navigation = () => {
                 </Link>
               </li>
             </ul>
-            <div className="d-flex gap-3 align-items-center">
+            <div className="d-flex gap-3 align-items-center justify-content-center">
               <div className="d-flex gap-1">
                 <button
                   className={`btn ${lang === "az" ? "active" : ""} ${
