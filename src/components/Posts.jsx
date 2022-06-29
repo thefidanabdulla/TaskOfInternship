@@ -58,7 +58,7 @@ const Posts = () => {
               <thead>
                 <tr>
                   <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">#</th>
-                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">UserId</th>
+                  <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col"> {lang === 'az' ? 'UserID' : 'UserId'}</th>
                   <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col"> {lang === 'az' ? 'Başlıq' : 'Title'}</th>
                   <th  className={` ${darkMode ? 'text-white' : ''}`} scope="col">{lang === 'az' ? 'Kontent' : 'Body'}</th>
                 </tr>
@@ -104,7 +104,7 @@ const Posts = () => {
               <thead>
                 <tr>
                   <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">#</th>
-                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">postId</th>
+                  <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">{lang === 'az' ? 'PostID' : 'PostId'}</th>
                   <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">{lang === 'az' ? 'Ad' : 'Name'}</th>
                   <th className={` ${darkMode ? 'text-white' : ''}`} scope="col">Email</th>
                   <th className={` ${darkMode ? 'text-white' : ''}`} scope="col"> {lang === 'az' ? 'Kontent' : 'Body'}</th>
@@ -145,7 +145,7 @@ const Posts = () => {
                 #
               </th>
               <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
-                UserId
+                UserID
               </th>
               <th className={` ${darkMode ? "text-white" : ""} `} scope="col">
                 {lang === 'az' ? 'Başlıq' : 'Title'}
